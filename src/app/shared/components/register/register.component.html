@@ -1,0 +1,75 @@
+<app-navbar></app-navbar>
+<section class="h-100 bg-white">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card card-registration my-4">
+                    <div class="row g-0">
+                        <div class="col-xl-6 d-none d-xl-block">
+                            <img src="../../../../assets/image/image5.png" alt="Sample photo" class="img-fluid" style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card-body p-md-5 text-black">
+                                <h3 class="mb-5 text-uppercase">Register</h3>
+                                <form (ngSubmit)="onRegister()">
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label h6" for="form5Example1">Nom</label>
+                                        <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="user.nom" />
+
+                                    </div>
+                                    <hr class="mb-4">
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label h6" for="form5Example1">Prenom</label>
+
+                                        <input type="text" class="form-control " id="prenom" name="prenom" [(ngModel)]="user.prenom" />
+
+                                    </div>
+
+                                    <hr class="mb-4">
+
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form5Example2">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" />
+
+                                    </div>
+
+                                    <hr class="mb-4">
+
+                                    <!-- Email input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label h6" for="form5Example2">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" />
+
+                                    </div>
+
+                                    <hr class="mb-4">
+
+                                    <div class="form-outline mb-4">
+
+                                        <div class="col-md-6">
+                                            <label class="form-label h6" for="form5Example2">Profile</label>
+                                            <div class="select">
+                                                <select name="role" id="role" [(ngModel)]="user.role">
+                                               <option selected disabled>Choose a Profil</option>
+                                               <option [value]="user.role?.Admin">Admin</option>
+                                               <option [value]="user.role?.Joeur">Joeur</option>
+                                               <option [value]="user.role?.Entraineur">Entraineur</option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-end pt-3">
+                                        <input type="submit" value="Register" class="btn btn-success w-100 mt-3"> </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

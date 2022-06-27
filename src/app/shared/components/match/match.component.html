@@ -1,0 +1,114 @@
+<app-sidebar></app-sidebar>
+<!--Main layout-->
+<main style="margin-top: 58px;">
+    <div class="container pt-4">
+        <h1 class="text-center mb-5"><strong><u>Match</u></strong></h1>
+        <br>
+        <flash-messages></flash-messages>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2 mb-4" (click)="openPopup()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+        <table class="table align-middle mb-0 bg-x">
+            <thead class="bg-light">
+                <tr>
+                    <th>Stade</th>
+                    <th>Ville</th>
+                    <th>equipe1</th>
+                    <th>equipe2</th>
+                    <th>Horaire</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let match of matches">
+                    <td>{{match.stade}}
+                    </td>
+                    <td>
+                        {{match.ville}}
+                    </td>
+                    <td>
+                        {{match.equipe1?.nom}}
+                    </td>
+                    <td>
+                        {{match.equipe2?.nom}}
+                    </td>
+                    <td>
+                        {{match.horaire}}
+                    </td>
+
+                    <td>
+                        <button class="btn btn-success me-md-2 " (click)="edit(match)"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+                        <button class="btn btn-danger me-md-2" (click)="Delete(match)"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog" role="document">
+            <form>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Match</h4>
+                        <button type="button" (click)="closePopup()" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+
+                    </div>
+
+
+                    <div class="modal-body">
+
+                        <div class="form-group mt-3">
+                            <label for="House">Nom stade </label>
+                            <input type="text" [(ngModel)]="match.stade" class="form-control" id="stade" name="stade" aria-describedby="stade" placeholder="Enter stade">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="House">Nom ville </label>
+                            <input type="text" [(ngModel)]="match.ville" class="form-control" id="ville" name="ville" aria-describedby="ville" placeholder="Enter ville">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label  text-dark" for="form5Example2">Equipe1</label>
+                            <div class="select">
+                                <select [(ngModel)]="match.equipe1" id="equipe1" name="equipe1">
+                                   <option selected disabled>Choose a Format</option>
+                                   <option *ngFor="let equipe of equipes" [ngValue]="{id:equipe.id}" selected>{{equipe.nom}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label  text-dark" for="form5Example2">Equipe2</label>
+                            <div class="select">
+                                <select [(ngModel)]="match.equipe2" id="equipe2" name="equipe2">
+                                 <option selected disabled>Choose a Format</option>
+                                 <option *ngFor="let equipe of equipes" [ngValue]="{id:equipe.id}" selected>{{equipe.nom}}</option>
+                              </select>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="Horaire">Horaire</label><br>
+                            <div>
+                                <input type="datetime-local" [(ngModel)]="match.horaire" id="horaire" name="horaire" placeholder="Horaire">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" *ngIf="!StatusButton" (click)="update()" class="btn btn-success ">Update</button>
+                        <button type="button" *ngIf="StatusButton" (click)="create()" class="btn btn-primary ">Save</button>
+                        <button type="button" class="btn btn-danger" (click)="closePopup()">
+                   Close
+               </button>
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+</main>
+
+<!--Main layout-->

@@ -1,0 +1,90 @@
+<app-sidebar></app-sidebar>
+<!--Main layout-->
+<main style="margin-top: 58px;">
+    <div class="container pt-4">
+        <h1 class="text-center mb-5"><strong><u>Equipe</u></strong></h1>
+        <br>
+        <flash-messages></flash-messages>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2 mb-4" (click)="openPopup()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+        <table class="table align-middle mb-0 bg-x">
+            <thead class="bg-light">
+                <tr>
+                    <th>Nom</th>
+                    <th>categorie</th>
+                    <th>division</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let equipe of equipes">
+                    <td>{{equipe.nom}}
+                    </td>
+                    <td>
+                        {{equipe.categorie}}
+                    </td>
+                    <td>
+                        {{equipe.division}}
+                    </td>
+
+                    <td>
+                        <button class="btn btn-success me-md-2 " (click)="edit(equipe)"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+                        <button class="btn btn-danger me-md-2" (click)="Delete(equipe)"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog" role="document">
+            <form>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Equipe</h4>
+                        <button type="button" (click)="closePopup()" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+
+                    </div>
+
+
+                    <div class="modal-body">
+
+                        <div class="form-group mt-3">
+                            <label for="House">Nom equipe </label>
+                            <input type="text" [(ngModel)]="equipe.nom" class="form-control" id="nom" name="nom" aria-describedby="name" placeholder="Enter nom">
+                        </div>
+                        <!-- <div class="form-group mt-3">
+                            <label for="Address">categorie</label>
+                            <input type="text" [(ngModel)]="equipe.categorie" class="form-control" id="categorie" name="categorie" aria-describedby="categorie" placeholder="Enter categorie">
+                        </div> -->
+                        <div class="form-group mt-3">
+                            <label class="form-label  text-dark" for="form5Example2">Categorie</label>
+                            <div class="select">
+                                <select [(ngModel)]="equipe.categorie" id="categorie" name="categorie">
+                                   <option selected disabled>Choose a Format</option>
+                                   <option *ngFor="let selectcateg of Selectcategorie" [ngValue]="selectcateg.categorie" selected>{{selectcateg.categorie}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="Floor">division</label>
+                            <input type="text" [(ngModel)]="equipe.division" class="form-control" id="division" name="division" aria-describedby="division" placeholder="Enter  division">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" *ngIf="!StatusButton" (click)="update()" class="btn btn-success ">Update</button>
+                        <button type="button" *ngIf="StatusButton" (click)="create()" class="btn btn-primary ">Save</button>
+                        <button type="button" class="btn btn-danger" (click)="closePopup()">
+                   Close
+               </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</main>
+<!--Main layout-->

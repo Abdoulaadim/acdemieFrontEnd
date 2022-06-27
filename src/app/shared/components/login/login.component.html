@@ -1,0 +1,68 @@
+<app-navbar></app-navbar>
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
+
+                                <div class="text-center">
+                                    <img src="../../../../assets/image/logo.png" style="width: 185px;" alt="logo">
+                                    <h4 class="mt-1 mb-5 pb-1">Academie Football</h4>
+                                </div>
+
+                                <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+                                    <div class="form-outline mb-4">
+                                        <label for="email">Email</label>
+                                        <input formControlName="email" type="text" class="form-control" placeholder="Email" id="email">
+                                        <div class="text-danger" *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.touched) || loginForm.get('email')?.dirty">
+                                            <div *ngIf="loginForm.get('email')?.getError('required')">
+                                                This field is Required
+                                            </div>
+                                            <div *ngIf="loginForm.get('email')?.getError('email')">This field should be email address</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label for="password">Password</label>
+                                        <input formControlName="password" type="password" name="password" class="form-control" placeholder="Password" id="password" />
+                                        <div class="text-danger" *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.touched) || loginForm.get('password')?.dirty">
+                                            <div *ngIf="loginForm.get('password')?.getError('required')">
+                                                This field is Required
+                                            </div>
+                                            <div *ngIf="loginForm.get('password')?.getError('minlength')">This field should be 8 caracters</div>
+                                            <div *ngIf="loginForm.get('password')?.getError('maxlength')">This field should be 8 caracters</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="text-center pt-1 mb-5 pb-1">
+                                        <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" [disabled]="loginForm.invalid">Log in</button>
+                                    </div>
+
+                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                                        <p class="mb-0 me-2">Vous n'avez pas de compte ?</p>
+                                        <button type="button" class="btn btn-outline-danger">Create new</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                            <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                <h4 class="mb-4">Academie de Football Safi</h4>
+                                <p class="small mb-0">Tous les supports pédagogiques de l'entraîneur sont conservés en un seul endroit. Programmation et analyse des entraînements. Portfolio pour chaque sportif. Meilleur marché que la plupart de plates-formes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

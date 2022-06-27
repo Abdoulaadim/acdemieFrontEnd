@@ -1,0 +1,84 @@
+<app-sidebar></app-sidebar>
+<!--Main layout-->
+<main style="margin-top: 58px;">
+    <div class="container pt-4">
+        <h1 class="text-center mb-5"><strong><u>Score</u></strong></h1>
+        <br>
+        <flash-messages></flash-messages>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2 mb-4" (click)="openPopup()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+        <table class="table align-middle mb-0 bg-x">
+            <thead class="bg-light">
+                <tr>
+                    <th>score</th>
+                    <th>Equipe</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let score of scores">
+                    <td>{{score.score}}
+                    </td>
+                    <td>
+                        {{score.equipe?.nom}}
+                    </td>
+                    <td>
+                        <td>
+                            <button class="btn btn-success me-md-2 " (click)="edit(score)"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+                            <button class="btn btn-danger me-md-2" (click)="Delete(score)"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>
+                        </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog" role="document">
+            <form>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Match</h4>
+                        <button type="button" (click)="closePopup()" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+
+                    </div>
+
+
+                    <div class="modal-body">
+
+                        <div class="form-group mt-3">
+                            <label for="House">Nom stade </label>
+                            <input type="text" [(ngModel)]="score.score" class="form-control" id="score" name="score" aria-describedby="score" placeholder="Enter score">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label class="form-label  text-dark" for="form5Example2">Equipe</label>
+                            <div class="select">
+                                <select [(ngModel)]="score.equipe" id="equipe" name="equipe">
+                                 <option selected disabled>Choose a Equipe</option>
+                                 <option *ngFor="let equipe of equipes" [ngValue]="{id:equipe.id}" selected>{{equipe.nom}}</option>
+                              </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" *ngIf="!StatusButton" (click)="update()" class="btn btn-success ">Update</button>
+                        <button type="button" *ngIf="StatusButton" (click)="create()" class="btn btn-primary ">Save</button>
+                        <button type="button" class="btn btn-danger" (click)="closePopup()">
+                   Close
+               </button>
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+</main>
+
+<!--Main layout-->

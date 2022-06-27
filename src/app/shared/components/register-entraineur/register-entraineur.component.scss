@@ -1,0 +1,68 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #615f5f;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgb(112, 112, 112));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgb(90, 90, 90))
+}
+
+HTML CSS .card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0!important;
+    background: #ffffff;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    width: 28em;
+    height: 2em;
+    line-height: 2;
+    background: #ffffff;
+    overflow: hidden;
+    border-radius: .25em;
+}
+
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #2b2e2e;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+
+.select:hover::after {
+    color: #23b499;
+}

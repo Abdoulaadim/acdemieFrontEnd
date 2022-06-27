@@ -1,0 +1,122 @@
+<app-sidebar></app-sidebar>
+<!--Main layout-->
+<main style="margin-top: 58px;">
+    <div class="container pt-4">
+        <h1 class="text-center mb-5"><strong><u>Entrainement</u></strong></h1>
+        <br>
+        <flash-messages></flash-messages>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-primary me-md-2 mb-4" (click)="openPopup()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
+        <table class="table align-middle mb-0 bg-x">
+            <thead class="bg-light">
+                <tr>
+                    <th>Stade</th>
+                    <th>Ville</th>
+                    <th>Description</th>
+                    <th>Equipe</th>
+                    <th>Date_debut</th>
+                    <th>Date_Fin</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entrainement of entrainements">
+                    <td>{{entrainement.stade}}
+                    </td>
+                    <td>
+                        {{entrainement.ville}}
+                    </td>
+                    <td>
+                        {{entrainement.description}}
+                    </td>
+                    <td>
+                        {{entrainement.equipe?.nom}}
+                    </td>
+                    <td>
+                        {{entrainement.date_entrainement}}
+                    </td>
+                    <td>
+                        {{entrainement.date_Fin}}
+                    </td>
+                    <td>
+                        <button class="btn btn-success me-md-2 " (click)="edit(entrainement)"><i class="fa fa-pencil-alt" aria-hidden="true"></i></button>
+                        <button class="btn btn-danger me-md-2" (click)="Delete(entrainement)"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+        <div class="modal-dialog" role="document">
+            <form>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Match</h4>
+                        <button type="button" (click)="closePopup()" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+
+                    </div>
+
+
+                    <div class="modal-body">
+
+                        <div class="form-group mt-3">
+                            <label for="House">Nom stade </label>
+                            <input type="text" [(ngModel)]="entrainement.stade" class="form-control" id="stade" name="stade" aria-describedby="stade" placeholder="Enter stade">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="House">Nom ville </label>
+                            <input type="text" [(ngModel)]="entrainement.ville" class="form-control" id="ville" name="ville" aria-describedby="ville" placeholder="Enter ville">
+                        </div>
+                        <div class="form-group mt-3">
+                            <label for="House">Description </label>
+                            <input type="text" [(ngModel)]="entrainement.description" class="form-control" id="description" name="description" aria-describedby="description" placeholder="Enter description">
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="Date_debut">Date_debut</label><br>
+                            <div>
+                                <input type="datetime-local" [(ngModel)]="entrainement.date_entrainement" id="date_entrainement" name="date_entrainement" placeholder="date_entrainement">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="Date_Fin">Date_Fin</label><br>
+                            <div>
+                                <input type="datetime-local" [(ngModel)]="entrainement.date_Fin" id="date_Fin" name="date_Fin" placeholder="date_Fin">
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label class="form-label  text-dark" for="form5Example2">Equipe</label>
+                            <div class="select">
+                                <select [(ngModel)]="entrainement.equipe" id="equipe" name="equipe">
+                                 <option selected disabled>Choose a Equipe</option>
+                                 <option *ngFor="let equipe of equipes" [ngValue]="{id:equipe.id}" selected>{{equipe.nom}}</option>
+                              </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="modal-footer">
+                        <button type="button" *ngIf="!StatusButton" (click)="update()" class="btn btn-success ">Update</button>
+                        <button type="button" *ngIf="StatusButton" (click)="create()" class="btn btn-primary ">Save</button>
+                        <button type="button" class="btn btn-danger" (click)="closePopup()">
+                   Close
+               </button>
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div>
+    </div>
+</main>
+
+<!--Main layout-->
